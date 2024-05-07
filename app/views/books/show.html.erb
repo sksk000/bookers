@@ -1,5 +1,5 @@
 <p>Title:<%= @book.title %></p>
 <p>Body:<%= @book.body %></p>
-<%= link_to 'Edit', "/books/#{@book.id}/edit" %>
+<%= link_to 'Edit', edit_book_url(@book.id) %>
 <%= link_to 'Back', books_path %>
 
