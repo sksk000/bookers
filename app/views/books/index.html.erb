@@ -1,17 +1,23 @@
+<body>
 <h1>Books</h1>
 <table>
-  <tr>
-    <th>title</th>
-    <th>body</th>
-  </tr>
-  <tr>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+    </tr>
+  </thead>
+  <tbody>
     <% @book.each do |book| %>
+    <tr>
       <td><%= book.title %></td>
       <td><%= book.body %></td>
       <td><%= link_to 'Show', show_book_url(book.id) %></td>
       <td><%= link_to 'Edit', edit_book_url(book.id) %></td>
       <td><%= link_to 'Destroy', destroy_book_url(book.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
+    </tr>
     <% end %>
-  </tr>
-</table>
-<%= render template: 'books/new' %>
+    </tbody>
+  </table>
+  <%= render template: 'books/new' %>
+</body>

@@ -1,5 +1,15 @@
-<p>Title:<%= @book.title %></p>
-<p>Body:<%= @book.body %></p>
-<%= link_to 'Edit', edit_book_url(@book.id) %>
-<%= link_to 'Back', books_path %>
+<body>
+    <p>
+    <strong>Title:</strong>
+    <%= @book.title %>
+    </p>
+
+    <p>
+    <strong>Body:</strong>
+    <%= @book.body %>
+    </p>
+    <%= link_to 'Edit', edit_book_url(@book.id) %>
+    |
+    <%= link_to 'Back', books_path %>
+</body>
 

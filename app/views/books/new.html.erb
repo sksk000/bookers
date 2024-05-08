@@ -1,11 +1,17 @@
-<h1>New Book</h1>
+<h2>New Book</h2>
 <%= form_with model: Book.new, url: '/books' do |f| %>
-  <p>Title</p>
+<div class="titlearea">
+  <label for="titlename">Title</label>
   <%= f.text_field :title %>
+</div>
 
-  <p>Body</p>
+<div class="bodyarea">
+  <label for="bodyname">Body</label>
   <%= f.text_area :body %>
+</div>
 
+<div class="button">
   <%= f.submit 'Create Book' %>
+</div>
 <% end %>
 
