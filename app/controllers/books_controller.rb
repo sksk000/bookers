@@ -9,7 +9,7 @@ class BooksController < ApplicationController
     if book.save
       flash[:notice] = "Book was successfully created."
       # 新規作成後一覧に戻る
-      redirect_to show_book_url(book.id)
+      redirect_to show_book_path(book.id)
     else
       flash.now[:alert] = "error Book was successfully created."
       @error_count = book.errors.count;
@@ -30,7 +30,12 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+    bookdata = Book.find_by(id: params[:id])
+    if bookdata == nil
+      render "books/deletedata"
+    else
+      @book = Book.find(params[:id])
+    end
   end
 
   def edit
@@ -42,7 +47,7 @@ class BooksController < ApplicationController
     if book.update(book_param)
       flash[:notice] = "Book was successfully updated."
       # 更新後は更新したidのデータを表示する
-      redirect_to show_book_url(book.id)
+      redirect_to show_book_path(book.id)
     else
       flash.now[:alert] = "error Book was successfully updated."
 
