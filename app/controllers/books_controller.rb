@@ -11,8 +11,9 @@ class BooksController < ApplicationController
       # 新規作成後一覧に戻る
       redirect_to show_book_url(book.id)
     else
-      flash.now[:notice] = "error Book was successfully created."
-
+      flash.now[:alert] = "error Book was successfully created."
+      @error_count = book.errors.count;
+      @error_msgs = book.errors.full_messages;
       @book = Book.all;
       # 新規作成失敗したので、ページ遷移しない
       render :index
@@ -22,6 +23,10 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.all
+
+    # エラーメッセージ数とメッセージを格納する変数を用意する
+    @error_count = 0
+    @error_msgs = ""
   end
 
   def show
@@ -39,7 +44,7 @@ class BooksController < ApplicationController
       # 更新後は更新したidのデータを表示する
       redirect_to show_book_url(book.id)
     else
-      flash.now[:notice] = "error Book was successfully updated."
+      flash.now[:alert] = "error Book was successfully updated."
 
       # edit画面では@bookを使用して表示している為、bookの情報を渡す
       @book = book
